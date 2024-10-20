@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="data:," />
+    <!-- Prevent favicon 404 error -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="side-menu">
+      <div class="logo">
+        <img src="./pngegg.png" alt="Weather App Logo" id="logo-image" />
+        <h2>Weather App</h2>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="./index.html" id="dashboard-link">Dashboard</a></li>
+          <li><a href="./Table.html" id="tables-link">Tables</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container">
+      <h1>Weather App</h1>
+      <div class="input-section">
+        <input type="text" id="city-input" placeholder="Enter city name" />
+        <button id="get-weather-btn">Get Weather</button>
+        <div class="geolocation">
+          <button id="geolocation-btn">Use My Location</button>
+        </div>
+      </div>
+
+      <div class="unit-toggle">
+        <label class="switch">
+          <input type="checkbox" id="unit-toggle" />
+          <span class="slider round"></span>
+        </label>
+        <span id="unit-label">°C</span>
+      </div>
+
+      <div id="loading-spinner" class="spinner hidden"></div>
+
+      <div class="weather-widget" id="weather-widget">
+        <h2 id="city-name"></h2>
+        <p id="weather-description"></p>
+        <img id="weather-icon" src="" alt="Weather Icon" />
+        <p>Temperature: <span id="temperature"></span></p>
+        <p>Humidity: <span id="humidity"></span></p>
+        <p>Wind Speed: <span id="wind-speed"></span></p>
+      </div>
+
+      <div class="chart-container">
+        <div class="chart-box">
+          <canvas id="tempBarChart"></canvas>
+        </div>
+        <div class="chart-box">
+          <canvas id="weatherDoughnutChart"></canvas>
+        </div>
+        <div class="chart-box">
+          <canvas id="tempLineChart"></canvas>
+        </div>
+      </div>
+
+      <div class="forecast-section">
+        <h3>5-Day Forecast</h3>
+        <div id="forecast"></div>
+      </div>
+
+      <div id="error-message" class="error hidden">
+        City not found. Please try again.
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
