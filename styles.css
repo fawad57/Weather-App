@@ -340,3 +340,126 @@ input:checked + .slider:before {
   animation: fadeIn 0.5s ease forwards;
   transition: background 0.5s ease;
 }
+/* Base styles already present */
+
+/* Responsive adjustments */
+@media only screen and (max-width: 1200px) {
+  .container {
+    margin-left: 300px; /* Adjusts container for smaller screens */
+  }
+
+  .side-menu {
+    width: 200px; /* Make side menu narrower on medium screens */
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    margin-left: 0; /* Center the container for mobile */
+    width: 95%; /* Make container more fluid on mobile */
+  }
+
+  .side-menu {
+    display: none; /* Hide side menu on mobile */
+  }
+
+  /* Adjust chart boxes for smaller screens */
+  .chart-box {
+    max-width: 100%; /* Full width for charts */
+    height: auto; /* Let height adjust naturally */
+    margin-bottom: 20px; /* Add spacing between charts */
+  }
+
+  .input-section {
+    flex-direction: column; /* Stack input and buttons vertically */
+    width: 100%;
+  }
+
+  .unit-toggle {
+    justify-content: center; /* Center toggle on smaller screens */
+  }
+}
+
+/* Ensure forecast items display nicely on mobile */
+@media only screen and (max-width: 600px) {
+  #forecast {
+    flex-direction: column;
+    gap: 15px; /* Add more gap between forecast items */
+  }
+
+  .forecast-section div {
+    flex: 1 1 100%; /* Make forecast items full-width on mobile */
+  }
+
+  /* Buttons and inputs on mobile */
+  .controls button {
+    width: 100%; /* Full-width buttons */
+    margin-bottom: 10px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .container {
+    margin-left: 0; /* Remove left margin on smaller screens */
+    width: 100%; /* Full-width container */
+  }
+
+  .chart-container {
+    flex-direction: column; /* Stack charts vertically */
+  }
+
+  .chart-box {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .side-menu {
+    display: none; /* Hide side menu on mobile */
+  }
+}
+/* Add this for tablets and iPads */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .chart-container {
+    flex-direction: column; /* Stack the charts vertically */
+    gap: 20px; /* Maintain spacing between the charts */
+  }
+
+  .chart-box {
+    max-width: 100%; /* Charts take full width on tablet */
+    height: 300px; /* Set a specific height to maintain consistency */
+  }
+
+  .container {
+    margin-left: 0; /* Center the container for better alignment */
+    width: 95%; /* Slightly smaller width to fit well on tablets */
+    padding: 20px;
+  }
+
+  /* For the input section on tablets */
+  .input-section {
+    flex-direction: row;
+    justify-content: center; /* Keep buttons aligned horizontally on tablets */
+    flex-wrap: wrap; /* Allow wrapping to ensure good spacing */
+  }
+
+  /* Adjust side-menu width for tablets */
+  .side-menu {
+    width: 220px;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .forecast-section div {
+    flex: 1 1 45%; /* Each item takes 45% on tablet */
+    margin-bottom: 15px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .forecast-section {
+    flex-direction: column; /* Stack forecast items vertically on smaller screens */
+    gap: 20px;
+  }
+
+  .forecast-section div {
+    flex: 1 1 100%; /* Full width for each forecast item on mobile */
+  }
+}
