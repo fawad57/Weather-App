@@ -3,15 +3,10 @@ html {
   margin: 0;
   padding: 0;
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(
-    to bottom right,
-    #1c92d2,
-    #f2fcfe
-  ); /* Default gradient background */
+  background: linear-gradient(to bottom right, #1c92d2, #f2fcfe);
   color: #333;
 }
 
-/* Side Menu Styles */
 .side-menu {
   position: fixed;
   width: 250px;
@@ -57,7 +52,6 @@ html {
   color: #3498db;
 }
 
-/* Container Styling */
 .container {
   width: 90%;
   max-width: 1200px;
@@ -90,13 +84,12 @@ h1 {
   font-size: 1.2em;
 }
 
-/* Input Section Enhancements */
 .input-section {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap; /* Allows wrapping for responsiveness */
-  gap: 10px; /* Add space between input and buttons */
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .input-section input {
@@ -114,7 +107,6 @@ h1 {
   outline: none;
 }
 
-/* Button Styling */
 button {
   background-color: #3498db;
   color: white;
@@ -133,7 +125,7 @@ button:hover {
 
 .input-section button {
   display: inline-block;
-  margin: 0 5px; /* Ensures buttons are horizontally aligned with some margin */
+  margin: 0 5px;
 }
 
 .geolocation {
@@ -148,7 +140,6 @@ button:hover {
   gap: 10px;
 }
 
-/* Improved Styling for Toggle */
 .switch {
   position: relative;
   display: inline-block;
@@ -199,13 +190,11 @@ input:checked + .slider:before {
   color: #333;
 }
 
-/* Additional spacing for a cleaner look */
 .input-section,
 .unit-toggle {
   margin-bottom: 20px;
 }
 
-/* Unit Toggle Styling */
 .unit-toggle {
   display: flex;
   align-items: center;
@@ -213,7 +202,6 @@ input:checked + .slider:before {
   margin-bottom: 20px;
 }
 
-/* Chart container styling */
 .chart-container {
   display: flex;
   justify-content: space-between;
@@ -228,43 +216,40 @@ input:checked + .slider:before {
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  max-width: 32%; /* Ensure all charts have the same size */
-  height: 350px; /* Set a uniform height for all charts */
+  max-width: 32%;
+  height: 350px;
 }
 
-/* Forecast Section Styling */
 .forecast-section {
   margin-top: 40px;
   text-align: center;
 }
-/* Forecast Section Styling */
+
 #forecast {
   display: flex;
-  justify-content: space-between; /* Distribute forecast items evenly */
-  gap: 10px; /* Add space between forecast items */
-  width: 100%; /* Make forecast section full width of the container */
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
   padding: 20px;
-  box-sizing: border-box; /* Ensure padding and width are consistent */
+  box-sizing: border-box;
 }
-
-/* Each forecast box */
 .forecast-section div {
   background: rgba(255, 255, 255, 0.8);
   padding: 15px;
   border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-  flex: 1; /* Ensure equal width for each forecast item */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex: 1;
   text-align: center;
-  border-left: 1px solid #fff; /* Add separator between boxes */
+  border-left: 1px solid #fff;
   transition: background 0.3s ease;
 }
 
 .forecast-section div:first-child {
-  border-left: none; /* Remove the left border for the first item */
+  border-left: none;
 }
 
 .forecast-section div:hover {
-  background: rgba(255, 255, 255, 1); /* Highlight on hover */
+  background: rgba(255, 255, 255, 1);
 }
 
 .forecast-section img {
@@ -280,7 +265,7 @@ input:checked + .slider:before {
 }
 
 .forecast-section .temp-range {
-  font-size: 1.3em; /* Highlight temperature range */
+  font-size: 1.3em;
   font-weight: bold;
   color: #333;
 }
@@ -288,10 +273,9 @@ input:checked + .slider:before {
 .forecast-section h3 {
   font-size: 1.8em;
   margin-bottom: 20px;
-  color: #2d3a40; /* Darker gray-blue for better readability */
+  color: #2d3a40;
 }
 
-/* Adjusting icon sizes and layout inside each forecast box */
 .forecast-section img {
   width: 50px;
   height: 50px;
@@ -303,7 +287,6 @@ input:checked + .slider:before {
   margin-top: 20px;
 }
 
-/* Animation for loading spinner */
 .spinner {
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-left-color: #3498db;
@@ -323,7 +306,7 @@ input:checked + .slider:before {
     transform: rotate(360deg);
   }
 }
-/* Fade-in animation for forecast items */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -335,76 +318,70 @@ input:checked + .slider:before {
   }
 }
 
-/* Apply the fade-in animation to each forecast item */
 .forecast-item {
   animation: fadeIn 0.5s ease forwards;
   transition: background 0.5s ease;
 }
-/* Base styles already present */
 
-/* Responsive adjustments */
 @media only screen and (max-width: 1200px) {
   .container {
-    margin-left: 300px; /* Adjusts container for smaller screens */
+    margin-left: 300px;
   }
 
   .side-menu {
-    width: 200px; /* Make side menu narrower on medium screens */
+    width: 200px;
   }
 }
 
 @media only screen and (max-width: 768px) {
   .container {
-    margin-left: 0; /* Center the container for mobile */
-    width: 95%; /* Make container more fluid on mobile */
+    margin-left: 0;
+    width: 95%;
   }
 
   .side-menu {
-    display: none; /* Hide side menu on mobile */
+    display: none;
   }
 
-  /* Adjust chart boxes for smaller screens */
   .chart-box {
-    max-width: 100%; /* Full width for charts */
-    height: auto; /* Let height adjust naturally */
-    margin-bottom: 20px; /* Add spacing between charts */
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
   }
 
   .input-section {
-    flex-direction: column; /* Stack input and buttons vertically */
+    flex-direction: column;
     width: 100%;
   }
 
   .unit-toggle {
-    justify-content: center; /* Center toggle on smaller screens */
+    justify-content: center;
   }
 }
 
-/* Ensure forecast items display nicely on mobile */
 @media only screen and (max-width: 600px) {
   #forecast {
     flex-direction: column;
-    gap: 15px; /* Add more gap between forecast items */
+    gap: 15px;
   }
 
   .forecast-section div {
-    flex: 1 1 100%; /* Make forecast items full-width on mobile */
+    flex: 1 1 100%;
   }
 
-  /* Buttons and inputs on mobile */
   .controls button {
-    width: 100%; /* Full-width buttons */
+    width: 100%;
     margin-bottom: 10px;
   }
 }
 @media only screen and (max-width: 768px) {
   .container {
-    margin-left: 0; /* Remove left margin on smaller screens */
-    width: 100%; /* Full-width container */
+    margin-left: 0;
+    width: 100%;
   }
 
   .chart-container {
-    flex-direction: column; /* Stack charts vertically */
+    flex-direction: column;
   }
 
   .chart-box {
@@ -413,53 +390,51 @@ input:checked + .slider:before {
   }
 
   .side-menu {
-    display: none; /* Hide side menu on mobile */
+    display: none;
   }
 }
-/* Add this for tablets and iPads */
+
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
   .chart-container {
-    flex-direction: column; /* Stack the charts vertically */
-    gap: 20px; /* Maintain spacing between the charts */
+    flex-direction: column;
+    gap: 20px;
   }
 
   .chart-box {
-    max-width: 100%; /* Charts take full width on tablet */
-    height: 300px; /* Set a specific height to maintain consistency */
+    max-width: 100%;
+    height: 300px;
   }
 
   .container {
-    margin-left: 0; /* Center the container for better alignment */
-    width: 95%; /* Slightly smaller width to fit well on tablets */
+    margin-left: 0;
+    width: 95%;
     padding: 20px;
   }
 
-  /* For the input section on tablets */
   .input-section {
     flex-direction: row;
-    justify-content: center; /* Keep buttons aligned horizontally on tablets */
-    flex-wrap: wrap; /* Allow wrapping to ensure good spacing */
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
-  /* Adjust side-menu width for tablets */
   .side-menu {
     width: 220px;
   }
 }
 @media only screen and (max-width: 1024px) {
   .forecast-section div {
-    flex: 1 1 45%; /* Each item takes 45% on tablet */
+    flex: 1 1 45%;
     margin-bottom: 15px;
   }
 }
 
 @media only screen and (max-width: 768px) {
   .forecast-section {
-    flex-direction: column; /* Stack forecast items vertically on smaller screens */
+    flex-direction: column;
     gap: 20px;
   }
 
   .forecast-section div {
-    flex: 1 1 100%; /* Full width for each forecast item on mobile */
+    flex: 1 1 100%;
   }
 }

@@ -23,7 +23,6 @@
     <div class="container">
       <h1>5-Day Temperature Forecast</h1>
 
-      <!-- Unit toggle switch -->
       <div class="unit-toggle">
         <label class="switch">
           <input type="checkbox" id="unit-toggle" />
@@ -32,7 +31,6 @@
         <span id="unit-label">°C</span>
       </div>
 
-      <!-- New buttons for sorting, filtering, and showing highest temperature -->
       <div class="controls">
         <button id="sort-asc-btn">Sort Temps Ascending</button>
         <button id="sort-desc-btn">Sort Temps Descending</button>
@@ -40,7 +38,6 @@
         <button id="max-temp-btn">Show Max Temp Day</button>
       </div>
 
-      <!-- Table to show searched cities with their current weather -->
       <table>
         <thead>
           <tr>
@@ -54,14 +51,12 @@
         <tbody id="table-body"></tbody>
       </table>
 
-      <!-- Pagination controls -->
       <div class="pagination">
         <button id="prev-btn">Previous</button>
         <span id="page-info"></span>
         <button id="next-btn">Next</button>
       </div>
 
-      <!-- Forecast data section -->
       <div class="forecast-data" id="forecast-data">
         <h3>5-Day Forecast for <span id="forecast-city"></span></h3>
         <table>
@@ -78,11 +73,8 @@
         </table>
       </div>
 
-      <!-- Chatbot Interface -->
       <div class="chatbot-container">
-        <div class="chatbot-window" id="chatbot-window">
-          <!-- Messages will appear here -->
-        </div>
+        <div class="chatbot-window" id="chatbot-window"></div>
         <div class="chatbot-input">
           <input
             type="text"

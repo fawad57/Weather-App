@@ -1,4 +1,4 @@
-const apiKey = "f087b2681752c069ba10f97ff64c5cf5"; // Ensure this key is valid
+const apiKey = "f087b2681752c069ba10f97ff64c5cf5";
 const cityInput = document.getElementById("city-input");
 const getWeatherBtn = document.getElementById("get-weather-btn");
 const geolocationBtn = document.getElementById("geolocation-btn");
@@ -12,7 +12,7 @@ const ctxDoughnut = document
   .getContext("2d");
 const ctxLine = document.getElementById("tempLineChart").getContext("2d");
 
-let unit = "metric"; // Default to Celsius
+let unit = "metric";
 
 window.addEventListener("load", () => {
   if (!localStorage.getItem("firstLoad")) {
@@ -21,14 +21,12 @@ window.addEventListener("load", () => {
   }
 });
 
-// Check if elements exist
 function checkElementExists(element, elementName) {
   if (!element) {
     console.error(`${elementName} element not found.`);
   }
 }
 
-// Ensure all necessary elements are available
 checkElementExists(cityInput, "City Input");
 checkElementExists(getWeatherBtn, "Get Weather Button");
 checkElementExists(geolocationBtn, "Geolocation Button");
@@ -39,7 +37,6 @@ checkElementExists(ctxBar, "Bar Chart Context");
 checkElementExists(ctxDoughnut, "Doughnut Chart Context");
 checkElementExists(ctxLine, "Line Chart Context");
 
-// Initialize Bar Chart
 const tempBarChart = new Chart(ctxBar, {
   type: "bar",
   data: {
@@ -56,13 +53,13 @@ const tempBarChart = new Chart(ctxBar, {
   },
   options: {
     responsive: true,
-    maintainAspectRatio: false, // Ensure proper scaling
+    maintainAspectRatio: false,
     scales: {
       x: { ticks: { color: "#333" } },
       y: { ticks: { color: "#333" }, beginAtZero: true },
     },
     animation: {
-      onComplete: () => {}, // Optional callback after animation
+      onComplete: () => {},
       delay: function (context) {
         let delay = 0;
         if (
@@ -70,7 +67,7 @@ const tempBarChart = new Chart(ctxBar, {
           context.mode === "default" &&
           context.dataIndex !== undefined
         ) {
-          delay = context.dataIndex * 300; // 300ms delay between bars
+          delay = context.dataIndex * 300;
         }
         return delay;
       },
@@ -78,7 +75,6 @@ const tempBarChart = new Chart(ctxBar, {
   },
 });
 
-// Initialize Doughnut Chart
 const weatherDoughnutChart = new Chart(ctxDoughnut, {
   type: "doughnut",
   data: {
@@ -106,7 +102,7 @@ const weatherDoughnutChart = new Chart(ctxDoughnut, {
       },
     },
     animation: {
-      onComplete: () => {}, // Optional callback after animation
+      onComplete: () => {},
       delay: function (context) {
         let delay = 0;
         if (
@@ -114,7 +110,7 @@ const weatherDoughnutChart = new Chart(ctxDoughnut, {
           context.mode === "default" &&
           context.dataIndex !== undefined
         ) {
-          delay = context.dataIndex * 300; // 300ms delay between data points
+          delay = context.dataIndex * 300;
         }
         return delay;
       },
@@ -122,7 +118,6 @@ const weatherDoughnutChart = new Chart(ctxDoughnut, {
   },
 });
 
-// Initialize Line Chart
 const tempLineChart = new Chart(ctxLine, {
   type: "line",
   data: {
@@ -148,25 +143,21 @@ const tempLineChart = new Chart(ctxLine, {
   },
 });
 
-// Toggle between Celsius and Fahrenheit
 unitToggle.addEventListener("change", () => {
   unit = unitToggle.checked ? "imperial" : "metric";
   unitLabel.textContent = unitToggle.checked ? "°F" : "°C";
   if (cityInput.value) {
     fetchWeatherData(cityInput.value);
-    updateChartLabels(); // Update the chart labels when the unit changes
+    updateChartLabels();
   }
 });
 
-// Function to update chart labels based on unit
 function updateChartLabels() {
   const unitSymbol = unit === "metric" ? "°C" : "°F";
 
-  // Update Bar Chart label
   tempBarChart.data.datasets[0].label = `Temperature (${unitSymbol})`;
   tempBarChart.update();
 
-  // Update Line Chart label
   tempLineChart.data.datasets[0].label = `Temperature (${unitSymbol})`;
   tempLineChart.update();
 }
@@ -217,7 +208,7 @@ function fetchWeatherData(city) {
             JSON.stringify(searchedCities)
           );
         }
-        updateChartLabels(); // Update chart labels after fetching data
+        updateChartLabels();
       } else {
         throw new Error(data.message);
       }
@@ -226,8 +217,8 @@ function fetchWeatherData(city) {
       console.error("Error fetching weather data:", error);
       errorMessage.textContent = "City not found or API error.";
       errorMessage.classList.remove("hidden");
-      clearWeatherWidget(); // Clear the weather widget on error
-      resetCharts(); // Clear the charts when the city is not found
+      clearWeatherWidget();
+      resetCharts();
       resetForecast();
     })
     .finally(() => spinner.classList.add("hidden"));
@@ -239,21 +230,17 @@ function clearWeatherWidget() {
   document.getElementById("temperature").textContent = "";
   document.getElementById("humidity").textContent = "";
   document.getElementById("wind-speed").textContent = "";
-  document.getElementById("weather-icon").src = ""; // Clear icon
+  document.getElementById("weather-icon").src = "";
 }
 
-// Function to clear the charts
 function resetCharts() {
-  // Reset data for Bar Chart
   tempBarChart.data.labels = [];
   tempBarChart.data.datasets[0].data = [];
   tempBarChart.update();
 
-  // Reset data for Doughnut Chart
   weatherDoughnutChart.data.datasets[0].data = [0, 0, 0];
   weatherDoughnutChart.update();
 
-  // Reset data for Line Chart
   tempLineChart.data.labels = [];
   tempLineChart.data.datasets[0].data = [];
   tempLineChart.update();
@@ -261,7 +248,7 @@ function resetCharts() {
 
 function resetForecast() {
   const forecastContainer = document.getElementById("forecast");
-  forecastContainer.innerHTML = ""; // Clear the forecast data
+  forecastContainer.innerHTML = "";
 }
 
 function fetchWeatherDataByCoords(lat, lon) {
@@ -272,13 +259,11 @@ function fetchWeatherDataByCoords(lat, lon) {
     .then((response) => response.json())
     .then((data) => {
       if (data.cod === 200) {
-        // Update the city input field with the fetched city name
         cityInput.value = data.name;
 
         displayWeatherData(data);
         fetchFiveDayForecast(data.name);
 
-        // Store the city in localStorage if not already stored
         let searchedCities =
           JSON.parse(localStorage.getItem("searchedCities")) || [];
         if (!searchedCities.includes(data.name)) {
@@ -289,7 +274,7 @@ function fetchWeatherDataByCoords(lat, lon) {
           );
         }
 
-        updateChartLabels(); // Update chart labels after fetching data
+        updateChartLabels();
       } else {
         throw new Error(data.message);
       }
@@ -330,7 +315,6 @@ function displayWeatherData(data) {
   }`;
   weatherIcon.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
 
-  // Background update based on weather condition
   const weatherCondition = data.weather[0].main.toLowerCase();
   switch (weatherCondition) {
     case "clear":
@@ -419,7 +403,6 @@ function displayFiveDayForecast(forecastData) {
   });
 }
 
-// Update charts with forecast data
 function updateCharts(forecastData) {
   const dailyData = forecastData.filter((entry) =>
     entry.dt_txt.includes("12:00:00")
@@ -430,10 +413,8 @@ function updateCharts(forecastData) {
   );
   const temperatures = dailyData.map((day) => day.main.temp);
 
-  // Reset doughnut chart data
   weatherDoughnutChart.data.datasets[0].data = [0, 0, 0];
 
-  // Update Bar Chart
   tempBarChart.data.labels = labels;
   tempBarChart.data.datasets[0].data = temperatures;
   tempBarChart.update();
@@ -451,7 +432,6 @@ function updateCharts(forecastData) {
 
   weatherDoughnutChart.update();
 
-  // Update Line Chart
   tempLineChart.data.labels = labels;
   tempLineChart.data.datasets[0].data = temperatures;
   tempLineChart.update();

@@ -1,5 +1,5 @@
-const weatherApiKey = "f087b2681752c069ba10f97ff64c5cf5"; // Replace with your weather API key
-const geminiApiKey = "AIzaSyAoGFfLVeicF97WSEbi4cmtoOb8lq4vOYg"; // Replace with your Gemini API key
+const weatherApiKey = "f087b2681752c069ba10f97ff64c5cf5";
+const geminiApiKey = "AIzaSyAoGFfLVeicF97WSEbi4cmtoOb8lq4vOYg";
 
 const chatbotInput = document.getElementById("chatbot-input");
 const chatbotWindow = document.getElementById("chatbot-window");
@@ -10,7 +10,7 @@ sendBtn.addEventListener("click", () => {
   if (userMessage.trim()) {
     appendMessage("User", userMessage);
     handleUserQuery(userMessage);
-    chatbotInput.value = ""; // Clear input
+    chatbotInput.value = "";
   }
 });
 
@@ -19,17 +19,14 @@ function appendMessage(sender, message) {
   messageElem.classList.add(sender === "User" ? "user-message" : "bot-message");
   messageElem.textContent = `${sender}: ${message}`;
   chatbotWindow.appendChild(messageElem);
-  chatbotWindow.scrollTop = chatbotWindow.scrollHeight; // Scroll to the bottom
+  chatbotWindow.scrollTop = chatbotWindow.scrollHeight;
 }
 
-// Function to handle user queries
 function handleUserQuery(query) {
   if (query.toLowerCase().includes("weather")) {
-    // Extract city name from the query
-    const city = query.split(" ").slice(-1)[0]; // Assume last word is the city
+    const city = query.split(" ").slice(-1)[0];
     fetchWeatherData(city);
   } else {
-    // Handle non-weather queries using Gemini API
     fetchGeminiResponse(query);
   }
 }
@@ -57,7 +54,6 @@ function fetchWeatherData(city) {
     });
 }
 
-// Function to fetch responses from Gemini API
 function fetchGeminiResponse(query) {
   fetch("https://api.ai.google.dev/chatbot-endpoint", {
     method: "POST",

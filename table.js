@@ -13,23 +13,21 @@ let searchedCities = [];
 let currentPage = 1;
 const rowsPerPage = 10;
 let activeCity = null;
-let unit = "metric"; // Default to Celsius
+let unit = "metric";
 
-// Load searched cities on page load
 function loadSearchedCities() {
   searchedCities = JSON.parse(localStorage.getItem("searchedCities")) || [];
-  searchedCities.reverse(); // Show recent searches first
+  searchedCities.reverse();
   displaySearchedCities(currentPage);
   updatePaginationInfo();
 }
 
-// Toggle between Celsius and Fahrenheit
 unitToggle.addEventListener("change", () => {
   unit = unitToggle.checked ? "imperial" : "metric";
   unitLabel.textContent = unitToggle.checked ? "°F" : "°C";
-  displaySearchedCities(currentPage); // Re-display cities with updated unit
+  displaySearchedCities(currentPage);
   if (activeCity) {
-    fetchFiveDayForecast(activeCity); // If a city is selected, re-fetch the forecast with new unit
+    fetchFiveDayForecast(activeCity);
   }
 });
 
@@ -116,7 +114,6 @@ function fetchFiveDayForecast(city, callback = displayForecastData) {
     });
 }
 
-// Function to display forecast data in table
 function displayForecastData(forecastData) {
   forecastCityElement.textContent = activeCity;
   forecastBody.innerHTML = "";
@@ -149,30 +146,24 @@ function displayForecastData(forecastData) {
     forecastBody.appendChild(row);
   });
 
-  forecastDataSection.style.display = "block"; // Show forecast data
+  forecastDataSection.style.display = "block";
 }
 
-// New sorting, filtering, and highest temperature functionalities
-
-// Add buttons to handle sorting and filtering
 const sortAscBtn = document.getElementById("sort-asc-btn");
 const sortDescBtn = document.getElementById("sort-desc-btn");
 const filterRainBtn = document.getElementById("filter-rain-btn");
 const maxTempBtn = document.getElementById("max-temp-btn");
 
-// Sort temperatures in ascending order
 function sortTemperaturesAsc(forecastData) {
   const sortedData = forecastData.sort((a, b) => a.main.temp - b.main.temp);
   displayForecastData(sortedData);
 }
 
-// Sort temperatures in descending order
 function sortTemperaturesDesc(forecastData) {
   const sortedData = forecastData.sort((a, b) => b.main.temp - a.main.temp);
   displayForecastData(sortedData);
 }
 
-// Filter rainy days
 function filterRainyDays(forecastData) {
   const rainyDays = forecastData.filter((item) =>
     item.weather[0].description.toLowerCase().includes("rain")
@@ -180,7 +171,6 @@ function filterRainyDays(forecastData) {
   displayForecastData(rainyDays);
 }
 
-// Show the day with the highest temperature
 function showMaxTempDay(forecastData) {
   const maxTempDay = forecastData.reduce((max, day) =>
     day.main.temp > max.main.temp ? day : max
@@ -188,7 +178,6 @@ function showMaxTempDay(forecastData) {
   displayForecastData([maxTempDay]);
 }
 
-// Add event listeners for sorting and filtering
 sortAscBtn.addEventListener("click", () => {
   if (activeCity) {
     fetchFiveDayForecast(activeCity, sortTemperaturesAsc);
